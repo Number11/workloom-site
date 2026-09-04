@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/600.css";
+
+/* Brand tokens — canonical values live in claude/WorkLoom-Style-Guide.md */
+@theme {
+  --color-ink: #141B2D;
+  --color-ink-soft: #4A5568;
+  --color-paper: #FFFFFF;
+  --color-paper-warm: #F5F2EC;
+  --color-line: #E2DED6;
+  --color-copper: #B8571E;
+  --color-copper-deep: #A64D18;
+  --color-copper-bright: #E07B2E;
+  --color-mist: #9AA6BF;
+  --color-teal: #1F6F5C;
+  --color-error: #B42318;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html { color-scheme: light; }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  @media (min-width: 768px) { body { font-size: 18px; } }
+  h1, h2, h3 { text-wrap: balance; }
+  ::selection { background: #E07B2E55; }
+  :focus-visible { outline: 3px solid #B8571E66; outline-offset: 2px; }
+}
+
+@layer components {
+  .container-site { @apply mx-auto w-full max-w-[1152px] px-5 md:px-8; }
+  .section { @apply py-16 md:py-28; }
+  .eyebrow { @apply text-[13px] font-semibold uppercase tracking-[0.08em] text-copper; }
+  .display { @apply text-4xl md:text-[56px] font-bold leading-[1.05] tracking-[-0.02em]; }
+  .h2 { @apply text-[28px] md:text-[40px] font-bold leading-[1.1] tracking-[-0.01em]; }
+  .h3 { @apply text-xl md:text-2xl font-semibold leading-tight; }
+  .lede { @apply text-lg md:text-xl text-ink-soft max-w-[64ch]; }
+  .prose-site { @apply max-w-[64ch]; }
+  .prose-site p { @apply mb-4; }
+    .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-base font-semibold min-h-11 transition-colors bg-copper text-white hover:bg-copper-deep; }
+  .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-base font-semibold min-h-11 transition-colors border-[1.5px] border-ink text-ink hover:bg-paper-warm; }
+  .btn-secondary-dark { @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-base font-semibold min-h-11 transition-colors border-[1.5px] border-white text-white hover:bg-white/10; }
+  .link { @apply text-copper font-medium hover:underline underline-offset-4; }
+  .card { @apply rounded-xl border border-line bg-paper p-6; }
+  .num { @apply font-mono text-[32px] md:text-[44px] font-semibold leading-none; }
+  .label { @apply block text-[15px] font-semibold mb-1.5; }
+  .input { @apply w-full rounded-lg border border-line bg-paper px-4 h-12 text-base focus:border-copper focus:outline-none; }
+  .textarea { @apply w-full rounded-lg border border-line bg-paper px-4 py-3 text-base focus:border-copper focus:outline-none min-h-32; }
+  .check { @apply size-5 shrink-0 accent-copper mt-0.5; }
+}

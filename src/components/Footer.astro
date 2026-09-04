@@ -1,0 +1,22 @@
+---
+import { site, footerNav } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="bg-ink text-mist">
+  <div class="container-site py-12 md:py-16 grid gap-8 md:grid-cols-[1fr_auto]">
+    <div class="max-w-md">
+      <p class="text-white font-bold text-lg">{site.name}.ai</p>
+      <p class="mt-2 text-[15px]">{site.tagline}. {site.city}.</p>
+      <p class="mt-4 text-[15px]"><a href={`mailto:${site.contactEmail}`} class="hover:text-white underline underline-offset-4">{site.contactEmail}</a></p>
+    </div>
+    <ul class="grid grid-cols-2 gap-x-10 gap-y-2 text-[15px]">
+      {footerNav.map((n) => <li><a href={n.href} class="hover:text-white">{n.label}</a></li>)}
+    </ul>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-site py-5 text-[13px] flex flex-wrap gap-x-6 gap-y-1">
+      <span>© {year} {site.legalName}</span>
+      <span>The person you talk to is the person building it.</span>
+    </div>
+  </div>
+</footer>

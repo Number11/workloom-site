@@ -1,0 +1,19 @@
+---
+import { site, nav } from '../data/site';
+interface Props { cta?: { label: string; href: string } }
+const { cta = { label: 'Book an audit', href: '/contact' } } = Astro.props;
+---
+<header class="border-b border-line bg-paper">
+  <div class="container-site flex items-center justify-between h-16 md:h-20">
+    <a href="/" class="flex items-center gap-2 font-bold text-lg tracking-tight" aria-label={`${site.name} home`}>
+      <span class="inline-grid place-items-center size-8 rounded-md bg-ink text-copper-bright font-mono text-base">W</span>
+      <span>{site.name}<span class="text-ink-soft font-normal">.ai</span></span>
+    </a>
+    <nav class="flex items-center gap-2 md:gap-6" aria-label="Primary">
+      <ul class="hidden md:flex items-center gap-6 text-[15px] font-medium">
+        {nav.map((n) => <li><a href={n.href} class="hover:text-copper">{n.label}</a></li>)}
+      </ul>
+      <a href={cta.href} class="btn-primary !py-2.5 !px-4 md:!px-5 text-[15px]">{cta.label}</a>
+    </nav>
+  </div>
+</header>
