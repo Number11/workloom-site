@@ -12,7 +12,7 @@ export const site = {
   // Legal entity for privacy/terms. PLACEHOLDER until Andy confirms.
   legalName: 'WorkLoom',
   mailingAddress: 'Phoenix, AZ',
-  contactEmail: 'andypfunk@gmail.com', // swap for an @workloom.ai address once email is set up (Phase 3)
+  contactEmail: 'andy@workloom.ai', // swap for an @workloom.ai address once email is set up (Phase 3)
   phone: '', // leave blank to hide
 
   // Pricing
