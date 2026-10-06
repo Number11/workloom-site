@@ -1,0 +1,21 @@
+---
+const stages = [
+  ['New lead', 3], ['Qualifying', 2], ['Qualified', 1], ['Consult booked', 4], ['Engagement sent', 1], ['Signed', 2],
+] as const;
+---
+<div class="w-full max-w-[460px] bg-paper text-ink rounded-[14px] p-6 flex flex-col gap-4 shadow-[0_30px_60px_rgba(0,0,0,.35)]">
+  <div class="flex justify-between items-center"><span class="eyebrow !text-ink-soft !tracking-[.06em]">Intake pipeline · today</span><span class="font-mono text-xs text-ink-soft">auto-updated</span></div>
+  <div class="grid grid-cols-6 gap-1.5">
+    {stages.map(([s, n]) => (
+      <div class="flex flex-col gap-1.5">
+        <div class="h-16 rounded-md bg-paper-warm flex items-end justify-center pb-1.5"><span class="font-mono font-semibold">{n}</span></div>
+        <span class="text-[10px] leading-tight text-ink-soft text-center">{s}</span>
+      </div>
+    ))}
+  </div>
+  <div class="grid gap-2 text-[13px]">
+    <div class="grid grid-cols-[1fr_auto_auto] gap-3 items-center px-3 py-2 rounded-lg bg-paper-warm"><span class="font-medium">M. Alvarez · rear-end, not at fault</span><span class="font-mono text-teal font-semibold">85</span><span class="text-ink-soft">Booked 10:00</span></div>
+    <div class="grid grid-cols-[1fr_auto_auto] gap-3 items-center px-3 py-2 rounded-lg bg-paper-warm"><span class="font-medium">J. Patel · slip and fall, treated</span><span class="font-mono text-teal font-semibold">70</span><span class="text-ink-soft">Booked 2:30</span></div>
+    <div class="grid grid-cols-[1fr_auto_auto] gap-3 items-center px-3 py-2 rounded-lg bg-paper-warm"><span class="font-medium">R. Chen · workplace injury</span><span class="font-mono text-error font-semibold">—</span><span class="text-ink-soft">Screened: workers' comp</span></div>
+  </div>
+</div>

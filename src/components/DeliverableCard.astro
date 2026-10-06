@@ -1,0 +1,22 @@
+---
+const items = [
+  ['01', 'Systems map — every tool and every handoff', 'p.2'],
+  ['02', 'Failure points — where work leaks or breaks', 'p.4'],
+  ['03', 'Ranked fix list with dollar impact each', 'p.6'],
+  ['04', 'AI tools: which fit, which don\'t, and why', 'p.8'],
+  ['05', 'Fixed-scope quote for anything worth building', 'p.10'],
+];
+---
+<div class="card !p-7 flex flex-col gap-4">
+  <div class="flex justify-between items-center"><span class="eyebrow !text-ink-soft">What you get</span><span class="font-mono text-xs text-ink-soft">audit-plan.pdf · 11 pages</span></div>
+  <div class="grid gap-2.5">
+    {items.map(([n, t, p]) => (
+      <div class="grid grid-cols-[40px_1fr_auto] gap-3 items-center px-3.5 py-3 bg-paper-warm rounded-lg">
+        <span class="font-mono font-semibold text-copper-ink">{n}</span>
+        <span class="text-[15px] font-medium">{t}</span>
+        <span class="font-mono text-[13px] text-ink-soft">{p}</span>
+      </div>
+    ))}
+  </div>
+  <p class="text-sm text-ink-soft">Yours to keep whether or not we work together after.</p>
+</div>

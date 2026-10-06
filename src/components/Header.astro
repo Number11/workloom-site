@@ -1,19 +1,52 @@
 ---
-import { site, nav } from '../data/site';
+import { site, nav, cta as defaultCta, solutionsByBusiness, solutionsByBuild } from '../data/site';
 interface Props { cta?: { label: string; href: string } }
-const { cta = { label: 'Book an audit', href: '/contact' } } = Astro.props;
+const { cta = defaultCta } = Astro.props;
 ---
-<header class="border-b border-line bg-paper">
-  <div class="container-site flex items-center justify-between h-16 md:h-20">
-    <a href="/" class="flex items-center gap-2 font-bold text-lg tracking-tight" aria-label={`${site.name} home`}>
-      <span class="inline-grid place-items-center size-8 rounded-md bg-ink text-copper-bright font-mono text-base">W</span>
+<header class="border-b border-line bg-paper relative z-20">
+  <div class="container-site flex items-center justify-between h-16 md:h-20 gap-4">
+    <a href="/" class="flex items-center gap-2 font-bold text-lg tracking-tight shrink-0" aria-label={`${site.name} home`}>
+      <img src="/brand/fabric.svg" alt="" width="60" height="34" class="h-[34px] w-auto" />
       <span>{site.name}<span class="text-ink-soft font-normal">.ai</span></span>
     </a>
     <nav class="flex items-center gap-2 md:gap-6" aria-label="Primary">
       <ul class="hidden md:flex items-center gap-6 text-[15px] font-medium">
-        {nav.map((n) => <li><a href={n.href} class="hover:text-copper">{n.label}</a></li>)}
+        <li class="relative group">
+          <details class="group/d">
+            <summary class="list-none cursor-pointer flex items-center gap-1.5 hover:text-copper-ink select-none">
+              Solutions
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+            </summary>
+            <div class="absolute left-0 top-full mt-3 w-[560px] rounded-xl border border-line bg-paper shadow-[0_20px_50px_rgba(33,48,73,.15)] p-6 grid grid-cols-2 gap-6">
+              <div>
+                <p class="eyebrow mb-3">By business</p>
+                <ul class="grid gap-1">
+                  {solutionsByBusiness.map((s) => (
+                    <li><a href={s.href} class="block rounded-lg px-3 py-2 hover:bg-paper-warm"><span class="block font-semibold">{s.label}</span><span class="block text-[13px] text-ink-soft font-normal">{s.blurb}</span></a></li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p class="eyebrow mb-3">What I build</p>
+                <ul class="grid gap-1">
+                  {solutionsByBuild.map((s) => (
+                    <li><a href={s.href} class="block rounded-lg px-3 py-2 hover:bg-paper-warm font-medium">{s.label}</a></li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </details>
+        </li>
+        {nav.map((n) => <li><a href={n.href} class="hover:text-copper-ink">{n.label}</a></li>)}
       </ul>
+      <a href="/solutions" class="md:hidden text-[15px] font-medium">Solutions</a>
       <a href={cta.href} class="btn-primary !py-2.5 !px-4 md:!px-5 text-[15px]">{cta.label}</a>
     </nav>
   </div>
 </header>
+<script is:inline>
+  // Close the Solutions menu when clicking elsewhere.
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('header details[open]').forEach((d) => { if (!d.contains(e.target)) d.removeAttribute('open'); });
+  });
+</script>

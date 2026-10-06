@@ -1,0 +1,21 @@
+---
+// Generic "what one X touches" map: a row of tool boxes with graded handoffs between them.
+interface Props { steps: { label: string; tool: string }[]; handoffs: { label: string; grade: 'ok' | 'warn' | 'bad' }[]; caption: string }
+const { steps, handoffs, caption } = Astro.props;
+const gradeClass = { ok: 'border-line text-ink-soft', warn: 'border-copper-ink text-copper-ink', bad: 'border-error text-error' };
+const n = steps.length;
+---
+<div class="card !p-8 flex flex-col gap-6 overflow-x-auto">
+  <div class="min-w-[640px] flex flex-col gap-3">
+    <div class="grid gap-3" style={`grid-template-columns: repeat(${n}, minmax(0, 1fr))`}>
+      {steps.map((s, i) => <div class={`py-3.5 px-2 rounded-[10px] text-center text-sm font-medium ${i === 0 ? 'bg-ink text-white font-semibold' : 'border border-line'}`}>{s.label}</div>)}
+    </div>
+    <div class="grid gap-3 font-mono text-[13px] text-ink-soft text-center" style={`grid-template-columns: repeat(${n}, minmax(0, 1fr))`}>
+      {steps.map((s) => <span>{s.tool}</span>)}
+    </div>
+    <div class="grid gap-3 px-[7%]" style={`grid-template-columns: repeat(${n - 1}, minmax(0, 1fr))`}>
+      {handoffs.map((h) => <span class={`text-center text-xs font-semibold border-t-2 pt-1.5 ${gradeClass[h.grade]}`}>{h.label}</span>)}
+    </div>
+  </div>
+  <p class="text-[15px] text-ink-soft">{caption}</p>
+</div>

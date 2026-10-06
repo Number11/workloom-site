@@ -1,0 +1,23 @@
+---
+import { audiences } from '../data/audiences';
+const icons: Record<string, string> = {
+  'law-firms': 'M12 3v18M5 7l7-4 7 4M3 13l2-6 2 6a2 2 0 0 1-4 0zM17 13l2-6 2 6a2 2 0 0 1-4 0zM8 21h8',
+  'contractors': 'M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6',
+  'shopify': 'M6 6h15l-1.5 9h-12zM6 6L5 3H2M9 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM18 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2z',
+  'real-estate': 'M3 21h18M3 10l9-7 9 7M5 10v11M19 10v11M9 21v-7h6v7',
+};
+const tiles = [
+  ...Object.values(audiences).map((a) => ({ slug: a.slug, title: a.tileTitle, blurb: a.tileBlurb, link: a.tileLink, href: `/${a.slug}` })),
+  { slug: 'real-estate', title: 'Real estate operators', blurb: 'Underwriting models, investor CRM, and deal pipelines that update themselves.', link: 'Talk about a deal →', href: '/contact?biz=real-estate' },
+];
+---
+<div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+  {tiles.map((t) => (
+    <a href={t.href} class="card flex flex-col gap-3.5 hover:border-copper-ink transition-colors">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C87E3D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={icons[t.slug]} /></svg>
+      <span class="h3">{t.title}</span>
+      <span class="text-[15px] text-ink-soft">{t.blurb}</span>
+      <span class="mt-auto pt-2 font-semibold text-[15px] text-copper-ink">{t.link}</span>
+    </a>
+  ))}
+</div>

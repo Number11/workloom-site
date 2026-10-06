@@ -5,14 +5,15 @@
 
 /* Brand tokens — canonical values live in claude/WorkLoom-Style-Guide.md */
 @theme {
-  --color-ink: #141B2D;
+  --color-ink: #213049;
   --color-ink-soft: #4A5568;
   --color-paper: #FFFFFF;
-  --color-paper-warm: #F5F2EC;
+  --color-paper-warm: #FAF8EE;
   --color-line: #E2DED6;
-  --color-copper: #B8571E;
+  --color-copper: #C87E3D;        /* logo copper: eyebrows, big numbers, accents only */
+  --color-copper-ink: #B8571E;    /* buttons, links, small copper text (4.75:1 on white) */
   --color-copper-deep: #A64D18;
-  --color-copper-bright: #E07B2E;
+  --color-copper-bright: #E09A5C; /* copper on navy */
   --color-mist: #9AA6BF;
   --color-teal: #1F6F5C;
   --color-error: #B42318;
@@ -30,7 +31,7 @@
   }
   @media (min-width: 768px) { body { font-size: 18px; } }
   h1, h2, h3 { text-wrap: balance; }
-  ::selection { background: #E07B2E55; }
+  ::selection { background: #E09A5C55; }
   :focus-visible { outline: 3px solid #B8571E66; outline-offset: 2px; }
 }
 
@@ -44,14 +45,14 @@
   .lede { @apply text-lg md:text-xl text-ink-soft max-w-[64ch]; }
   .prose-site { @apply max-w-[64ch]; }
   .prose-site p { @apply mb-4; }
-    .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-base font-semibold min-h-11 transition-colors bg-copper text-white hover:bg-copper-deep; }
+    .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-base font-semibold min-h-11 transition-colors bg-copper-ink text-white hover:bg-copper-deep; }
   .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-base font-semibold min-h-11 transition-colors border-[1.5px] border-ink text-ink hover:bg-paper-warm; }
   .btn-secondary-dark { @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-base font-semibold min-h-11 transition-colors border-[1.5px] border-white text-white hover:bg-white/10; }
-  .link { @apply text-copper font-medium hover:underline underline-offset-4; }
+  .link { @apply text-copper-ink font-medium hover:underline underline-offset-4; }
   .card { @apply rounded-xl border border-line bg-paper p-6; }
   .num { @apply font-mono text-[32px] md:text-[44px] font-semibold leading-none; }
   .label { @apply block text-[15px] font-semibold mb-1.5; }
-  .input { @apply w-full rounded-lg border border-line bg-paper px-4 h-12 text-base focus:border-copper focus:outline-none; }
-  .textarea { @apply w-full rounded-lg border border-line bg-paper px-4 py-3 text-base focus:border-copper focus:outline-none min-h-32; }
-  .check { @apply size-5 shrink-0 accent-copper mt-0.5; }
+  .input { @apply w-full rounded-lg border border-line bg-paper px-4 h-12 text-base focus:border-copper-ink focus:outline-none; }
+  .textarea { @apply w-full rounded-lg border border-line bg-paper px-4 py-3 text-base focus:border-copper-ink focus:outline-none min-h-32; }
+  .check { @apply size-5 shrink-0 accent-copper-ink mt-0.5; }
 }

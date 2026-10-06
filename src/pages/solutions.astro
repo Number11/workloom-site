@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import AudienceTiles from '../components/AudienceTiles.astro';
+import { solutionsByBuild } from '../data/site';
+---
+<Base title="Solutions" description="Built solutions for law firms, contractors, Shopify stores, and real estate operators — plus the Business Audit.">
+  <Section eyebrow="Solutions" title="By business">
+    <AudienceTiles />
+  </Section>
+  <Section tone="warm" eyebrow="Solutions" title="What I build">
+    <ul class="grid gap-3 md:grid-cols-2">
+      {solutionsByBuild.map((s) => <li><a href={s.href} class="card block font-semibold hover:border-copper-ink">{s.label} →</a></li>)}
+    </ul>
+  </Section>
+</Base>

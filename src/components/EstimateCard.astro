@@ -1,0 +1,26 @@
+---
+// Contractor visual: estimate-to-contract timeline with the drop-off points marked.
+const rows = [
+  ['Day 0', 'Inquiry', 'Replied in 8s, site visit booked', 'ok'],
+  ['Day 2', 'Site visit', 'Showed. Estimate promised by Thursday', 'ok'],
+  ['Day 4', 'Estimate sent', '$18,400 · text + email', 'ok'],
+  ['Day 5', 'Follow-up 1', 'Text: "Any questions on the estimate?"', 'ok'],
+  ['Day 8', 'Follow-up 2', 'Email with the two options compared', 'ok'],
+  ['Day 11', 'Follow-up 3', 'Text + call task for you', 'warn'],
+  ['Day 12', 'Signed', 'E-signed from phone', 'teal'],
+] as const;
+const dot = { ok: 'bg-ink', warn: 'bg-copper-ink', teal: 'bg-teal' } as const;
+---
+<div class="w-full max-w-[460px] bg-paper text-ink rounded-[14px] p-6 flex flex-col gap-4 shadow-[0_30px_60px_rgba(0,0,0,.35)]">
+  <div class="flex justify-between items-center"><span class="eyebrow !text-ink-soft !tracking-[.06em]">Estimate → contract</span><span class="font-mono text-xs text-ink-soft">Kitchen remodel · demo</span></div>
+  <ol class="grid gap-2.5">
+    {rows.map(([d, t, b, g]) => (
+      <li class="grid grid-cols-[52px_12px_1fr] gap-3 items-start text-[13px]">
+        <span class="font-mono text-ink-soft pt-0.5">{d}</span>
+        <span class={`mt-1.5 size-2.5 rounded-full ${dot[g]}`} />
+        <span><span class="font-semibold">{t}</span> <span class="text-ink-soft">— {b}</span></span>
+      </li>
+    ))}
+  </ol>
+  <div class="bg-paper-warm rounded-lg px-4 py-3 text-[14px]"><span class="font-semibold">Without follow-up,</span> <span class="text-ink-soft">this estimate goes quiet on Day 4 and you never find out why.</span></div>
+</div>

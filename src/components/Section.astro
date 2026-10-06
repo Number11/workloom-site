@@ -1,0 +1,17 @@
+---
+interface Props { id?: string; tone?: 'paper' | 'warm' | 'ink'; eyebrow?: string; title?: string; lede?: string; narrow?: boolean; class?: string }
+const { id, tone = 'paper', eyebrow, title, lede, narrow = false, class: cls = '' } = Astro.props;
+const bg = tone === 'ink' ? 'bg-ink text-white' : tone === 'warm' ? 'bg-paper-warm' : 'bg-paper';
+---
+<section id={id} class={`section ${bg} scroll-mt-20 ${cls}`}>
+  <div class={`container-site ${narrow ? 'max-w-3xl' : ''}`}>
+    {(eyebrow || title) && (
+      <div class="flex flex-col gap-3 max-w-[62ch] mb-10">
+        {eyebrow && <p class={`eyebrow ${tone === 'ink' ? '!text-copper-bright' : ''}`}>{eyebrow}</p>}
+        {title && <h2 class="h2">{title}</h2>}
+        {lede && <p class={`text-lg ${tone === 'ink' ? 'text-mist' : 'text-ink-soft'}`}>{lede}</p>}
+      </div>
+    )}
+    <slot />
+  </div>
+</section>

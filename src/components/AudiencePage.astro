@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from './Section.astro';
+import StatTiles from './StatTiles.astro';
+import Steps from './Steps.astro';
+import Faq from './Faq.astro';
+import CtaBand from './CtaBand.astro';
+import FlowMap from './FlowMap.astro';
+import SmsThread from './SmsThread.astro';
+import PipelineCard from './PipelineCard.astro';
+import SkuMarginCard from './SkuMarginCard.astro';
+import EstimateCard from './EstimateCard.astro';
+import { site, cta } from '../data/site';
+import type { Audience } from '../data/audiences';
+interface Props { a: Audience }
+const { a } = Astro.props;
+const pageCta = { label: a.ctaLabel, href: `/contact?biz=${a.slug}` };
+---
+<Base title={a.title} description={a.description} cta={{ label: "Book a call", href: pageCta.href }}>
+  <section class="section bg-ink text-white">
+    <div class="container-site grid gap-14 lg:grid-cols-2 items-center">
+      <div class="flex flex-col gap-6">
+        <p class="eyebrow !text-copper-bright">{a.eyebrow}</p>
+        <h1 class="display max-w-[18ch]">{a.headline}</h1>
+        <p class="text-lg md:text-xl text-mist max-w-[52ch]">{a.sub}</p>
+        <div class="flex flex-wrap gap-3">
+          <a href={pageCta.href} class="btn-primary">{pageCta.label}</a>
+          {a.slug === 'law-firms'
+            ? <a href="/demo/law-intake" class="btn-secondary-dark">Text the demo</a>
+            : <a href="/audit" class="btn-secondary-dark">Start with a {site.auditPrice} audit</a>}
+        </div>
+      </div>
+      <div class="flex justify-center lg:justify-end">
+        {a.visual === 'sms' && <SmsThread />}
+        {a.visual === 'sku' && <SkuMarginCard />}
+        {a.visual === 'estimate' && <EstimateCard />}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper-warm border-b border-line">
+    <div class="container-site py-10"><StatTiles stats={a.stats} cols={3} /></div>
+  </section>
+
+  <Section eyebrow={a.getTitle} title={a.slug === 'shopify' ? 'Three places money leaks in a Shopify store, fixed.' : a.slug === 'law-firms' ? 'Six pieces. One system. Zero leads waiting.' : 'From first call to signed job, without the gaps.'}>
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {a.gets.map((g) => (
+        <div class="card flex flex-col gap-3">
+          <span class="font-mono text-sm font-semibold text-copper-ink">{g.n}</span>
+          <span class="h3">{g.title}</span>
+          <span class="text-[15px] text-ink-soft">{g.body}</span>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  {a.slug === 'law-firms' && (
+    <Section tone="warm" eyebrow="What the attorney sees" title="Scored, booked, and ready for the consult.">
+      <div class="grid gap-8 lg:grid-cols-2 items-start">
+        <PipelineCard />
+        <div class="prose-site text-ink-soft flex flex-col gap-4">
+          <p>Every lead lands in the pipeline with its score, its answers in fields, and the full transcript. The attorney gets a task only for borderline cases and signed engagements.</p>
+          <p>Screened-out leads stay visible with the reason, so if the rules are too strict you see it in a week, not a quarter.</p>
+          <p class="text-ink font-medium">Built in GoHighLevel on a phone number the firm owns. If we ever part ways, the system stays yours.</p>
+        </div>
+      </div>
+    </Section>
+  )}
+
+  {a.flow && (
+    <Section tone={a.slug === 'law-firms' ? 'paper' : 'warm'} eyebrow={a.flowTitle} title={a.slug === 'shopify' ? 'Seven tools, six handoffs, nobody watching the gaps.' : a.slug === 'law-firms' ? 'Five handoffs. Five places to lose the case.' : 'The quote was fine. The follow-up was the problem.'}>
+      <FlowMap steps={a.flow.steps} handoffs={a.flow.handoffs} caption={a.flow.caption} />
+    </Section>
+  )}
+
+  <Section id="how" eyebrow="How it works" title={a.slug === 'shopify' ? 'Audit first, or scope it directly.' : 'Setup, launch, operate.'}>
+    <Steps steps={a.steps} />
+    {a.stepsNote && <p class="mt-6 text-[15px] text-ink-soft max-w-[70ch]">{a.stepsNote} <a href="/audit" class="link">About the audit →</a></p>}
+  </Section>
+
+  <Section tone="warm" eyebrow="Questions" title="Things owners ask on the first call.">
+    <Faq items={a.faq} />
+  </Section>
+
+  <CtaBand title={a.ctaTitle} body={a.ctaBody} label={pageCta.label} href={pageCta.href} secondary={a.slug === 'law-firms' ? { label: 'Text the demo', href: '/demo/law-intake' } : undefined} />
+</Base>

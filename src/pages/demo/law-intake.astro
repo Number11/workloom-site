@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import Section from '../../components/Section.astro';
+import SmsThread from '../../components/SmsThread.astro';
+import CtaBand from '../../components/CtaBand.astro';
+// Fill these in once the GoHighLevel demo sub-account is live (see the GHL build spec in the project).
+const demo = {
+  phone: '', // e.g. '(602) 555-0147'
+  phoneHref: '', // e.g. 'tel:+16025550147'
+  chatWidgetSrc: '', // GHL chat widget embed script URL
+  formEmbed: '', // GHL form iframe URL
+};
+---
+<Base title="Live demo — law firm SMS intake" description="Call the demo line, don't leave a voicemail, and watch the intake system respond." noindex cta={{ label: 'Book a call about intake', href: '/contact?biz=law-firms' }}>
+  <section class="section bg-ink text-white">
+    <div class="container-site grid gap-14 lg:grid-cols-2 items-center">
+      <div class="flex flex-col gap-6">
+        <p class="eyebrow !text-copper-bright">Live demo · Northbridge Injury Group (a demonstration firm)</p>
+        <h1 class="display max-w-[16ch]">Be the lead. Call it and don't leave a voicemail.</h1>
+        {demo.phone
+          ? <a href={demo.phoneHref} class="font-mono text-4xl md:text-5xl font-semibold text-copper-bright hover:underline underline-offset-8">{demo.phone}</a>
+          : <p class="font-mono text-2xl text-mist">Demo line coming online — carrier registration in progress.</p>}
+        <p class="text-lg text-mist max-w-[52ch]">Within ten seconds you'll get a text. Answer the four questions and you'll be offered a consult time. Then imagine that happening to every lead your firm misses after 5 PM.</p>
+      </div>
+      <div class="flex justify-center lg:justify-end"><SmsThread /></div>
+    </div>
+  </section>
+
+  <Section eyebrow="Try the other doors" title="Web chat and the case-review form go to the same place.">
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="card min-h-[320px] flex flex-col gap-3">
+        <span class="h3">Web chat</span>
+        {demo.chatWidgetSrc ? <script src={demo.chatWidgetSrc} is:inline></script> : <span class="text-[15px] text-ink-soft">The chat widget appears here once the demo account is live.</span>}
+      </div>
+      <div class="card min-h-[320px] flex flex-col gap-3">
+        <span class="h3">Free case review form</span>
+        {demo.formEmbed ? <iframe src={demo.formEmbed} class="w-full flex-1 min-h-[400px] border-0" title="Free case review (demo)"></iframe> : <span class="text-[15px] text-ink-soft">The form appears here once the demo account is live.</span>}
+      </div>
+    </div>
+    <p class="mt-6 text-[15px] text-ink-soft max-w-[70ch]">This is a demonstration account operated by WorkLoom. Nothing you send here goes to a real law firm, and the engagement letter in the demo is not a real contract.</p>
+  </Section>
+
+  <CtaBand title="Want this answering your firm's phone?" body="Thirty minutes about your intake volume and criteria, and I'll tell you what setup looks like and what it costs." label="Book a call about intake" href="/contact?biz=law-firms" />
+</Base>

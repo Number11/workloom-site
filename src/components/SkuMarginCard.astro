@@ -1,0 +1,22 @@
+---
+const rows = [
+  ['Starter Kit', 72, 'teal'], ['Course bundle', 88, 'teal'], ['Pen set', 31, 'copper'], ['Gift box', 12, 'error'], ['Subscription', 64, 'teal'],
+] as const;
+const color: Record<string, string> = { teal: 'bg-teal text-teal', copper: 'bg-copper-ink text-copper-ink', error: 'bg-error text-error' };
+---
+<div class="w-full max-w-[460px] bg-paper text-ink rounded-[14px] p-6 flex flex-col gap-4 shadow-[0_30px_60px_rgba(0,0,0,.35)]">
+  <div class="flex justify-between items-center"><span class="eyebrow !text-ink-soft !tracking-[.06em]">Contribution margin by SKU</span><span class="font-mono text-xs text-ink-soft">last 30 days</span></div>
+  <div class="flex flex-col gap-2.5 text-sm">
+    {rows.map(([name, pct, c]) => (
+      <div class="grid grid-cols-[110px_1fr_48px] gap-3 items-center">
+        <span class="font-medium">{name}</span>
+        <div class="h-3.5 bg-paper-warm rounded-full overflow-hidden"><div class={`h-full ${color[c].split(' ')[0]}`} style={`width:${pct}%`} /></div>
+        <span class={`font-mono text-right ${color[c].split(' ')[1]}`}>{pct}%</span>
+      </div>
+    ))}
+  </div>
+  <div class="bg-paper-warm rounded-lg px-4 py-3 flex flex-col gap-0.5">
+    <span class="text-xs font-semibold uppercase tracking-[.06em] text-copper-ink">Decision</span>
+    <span class="text-[15px] font-semibold leading-snug">Gift box loses money after shipping. Pull it from ads; keep it as an upsell only.</span>
+  </div>
+</div>

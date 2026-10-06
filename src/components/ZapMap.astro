@@ -1,0 +1,32 @@
+---
+// Before/after systems map: 16 Zaps vs one mapping table.
+const zaps = ['Zap 1','Zap 2','Zap 3','Zap 4','Zap 5','Zap 6 ✕','Zap 7','Zap 8','Zap 9','Zap 10','Zap 11 ✕','Zap 12','…16'];
+const outs = ['Kit tags','Sequences','Courses'];
+---
+<div class="grid gap-6 md:grid-cols-2">
+  <div class="card !p-7 flex flex-col gap-5">
+    <div class="flex justify-between items-center"><span class="eyebrow !text-ink-soft">Before</span><span class="font-mono text-[13px] text-error">16 Zaps · ~1 hr per new product</span></div>
+    <div class="grid grid-cols-4 gap-2.5">
+      <div class="col-span-4 py-3 rounded-lg bg-ink text-white text-center font-semibold text-sm">Shopify order</div>
+      {zaps.map((z) => <div class={`py-2.5 px-1 rounded-lg border text-center text-xs ${z.includes('✕') ? 'border-error text-error' : 'border-line text-ink-soft'}`}>{z}</div>)}
+      {outs.map((o) => <div class="py-2.5 px-1 rounded-lg bg-paper-warm text-center text-xs text-ink-soft">{o}</div>)}
+    </div>
+    <p class="text-sm text-ink-soft">Every new product means editing all sixteen. Two fail silently and nobody notices for a week.</p>
+  </div>
+  <div class="card !p-7 !border-teal flex flex-col gap-5">
+    <div class="flex justify-between items-center"><span class="eyebrow !text-teal">After</span><span class="font-mono text-[13px] text-teal">1 workflow · 1 row per product</span></div>
+    <div class="flex flex-col gap-2.5">
+      <div class="py-3 rounded-lg bg-ink text-white text-center font-semibold text-sm">Shopify order</div>
+      <div class="text-center text-teal leading-none">▼</div>
+      <div class="py-3 rounded-lg border-[1.5px] border-teal text-center font-semibold text-sm flex flex-col gap-1.5">
+        <span>Mapping table (one Google Sheet)</span>
+        <div class="grid grid-cols-4 gap-1 font-mono text-[11px] font-medium text-ink-soft">{['SKU','tag','sequence','course'].map((c) => <span class="bg-paper-warm rounded px-1 py-1">{c}</span>)}</div>
+      </div>
+      <div class="text-center text-teal leading-none">▼</div>
+      <div class="py-3 rounded-lg border border-line text-center font-medium text-sm">One looping workflow, with error alerts</div>
+      <div class="text-center text-teal leading-none">▼</div>
+      <div class="grid grid-cols-3 gap-2">{outs.map((o) => <div class="py-2.5 px-1 rounded-lg bg-paper-warm text-center text-xs text-ink-soft">{o}</div>)}</div>
+    </div>
+    <p class="text-sm text-ink-soft">A new product is one row. One place to look when something's wrong.</p>
+  </div>
+</div>

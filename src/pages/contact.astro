@@ -1,70 +1,50 @@
 ---
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
-
-const revenue = ['Under $1M', '$1–3M', '$3–10M', 'Over $10M'];
-const platforms = ['Shopify', 'Kit', 'Klaviyo', 'Meta Ads', 'Google Ads', 'Zapier', 'n8n', 'Recharge', 'Other'];
+const biz = [
+  ['law-firms', 'A law firm'],
+  ['contractors', 'A contractor or builder'],
+  ['shopify', 'A Shopify store'],
+  ['real-estate', 'A real estate operator'],
+  ['audit', 'Not sure — I want the audit'],
+  ['other', 'Something else'],
+];
 ---
-<Base title="Book an audit" description={`Tell me about your stack. Fixed-fee audit, ${site.auditPrice}, ${site.auditDuration}, ends in a prioritized plan.`}>
+<Base title="Book a call" description="Tell me what's not working. Thirty minutes, and you'll know which system fits — or that you should start with the audit.">
   <section class="section">
     <div class="container-site grid gap-12 lg:grid-cols-[1fr_360px] lg:gap-20">
       <div>
-        <p class="eyebrow">Book an audit</p>
-        <h1 class="h2 mt-3">Tell me about your stack.</h1>
-        <p class="lede mt-4">A few questions so the first call is useful. Fixed-fee audit, <span class="font-mono text-ink">{site.auditPrice}</span>, {site.auditDuration}.</p>
+        <p class="eyebrow">Book a call</p>
+        <h1 class="h2 mt-3">Tell me what's not working.</h1>
+        <p class="lede mt-4">A few questions so the first call is useful. I reply within one business day with times.</p>
 
         <p id="form-error" hidden class="mt-6 rounded-lg border border-error/40 bg-error/5 px-4 py-3 text-[15px] text-error" role="alert">
           Something didn't go through. Check the fields below and try again, or email <a class="underline" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
         </p>
-        <script is:inline>
-          if (new URLSearchParams(location.search).has('error')) document.getElementById('form-error').hidden = false;
-        </script>
 
-        <form method="POST" action="/api/lead" class="mt-8 grid gap-5 max-w-2xl" novalidate={false}>
-          <input type="hidden" name="form" value="audit" />
-          <input type="hidden" name="redirect" value="/thanks/audit" />
-          <!-- honeypot: bots fill this, humans never see it -->
+        <form method="POST" action="/api/lead" class="mt-8 grid gap-5 max-w-2xl">
+          <input type="hidden" name="form" value="call" />
+          <input type="hidden" name="redirect" value="/thanks/call" />
           <div class="hidden" aria-hidden="true"><label>Website<input type="text" name="website_url" tabindex="-1" autocomplete="off" /></label></div>
 
-          <div class="grid gap-5 md:grid-cols-2">
-            <div>
-              <label for="name" class="label">Name <span class="font-normal text-ink-soft">(required)</span></label>
-              <input id="name" name="name" class="input" required autocomplete="name" />
-            </div>
-            <div>
-              <label for="email" class="label">Email <span class="font-normal text-ink-soft">(required)</span></label>
-              <input id="email" name="email" type="email" class="input" required autocomplete="email" />
-            </div>
-            <div>
-              <label for="phone" class="label">Mobile phone</label>
-              <input id="phone" name="phone" type="tel" class="input" autocomplete="tel" />
-            </div>
-            <div>
-              <label for="company" class="label">Company or store URL <span class="font-normal text-ink-soft">(required)</span></label>
-              <input id="company" name="company" class="input" required autocomplete="organization" />
-            </div>
-          </div>
-
           <div>
-            <label for="revenue" class="label">Annual revenue range <span class="font-normal text-ink-soft">(required)</span></label>
-            <select id="revenue" name="revenue" class="input" required>
+            <label for="biz" class="label">I'm… <span class="font-normal text-ink-soft">(required)</span></label>
+            <select id="biz" name="biz" class="input" required>
               <option value="">Choose one</option>
-              {revenue.map((r) => <option value={r}>{r}</option>)}
+              {biz.map(([v, l]) => <option value={v}>{l}</option>)}
             </select>
           </div>
 
-          <fieldset>
-            <legend class="label">Platforms you're running</legend>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-1">
-              {platforms.map((p) => (
-                <label class="flex items-center gap-2 text-[15px]"><input type="checkbox" name="platforms" value={p} class="check !mt-0" /> {p}</label>
-              ))}
-            </div>
-          </fieldset>
+          <div class="grid gap-5 md:grid-cols-2">
+            <div><label for="name" class="label">Name <span class="font-normal text-ink-soft">(required)</span></label><input id="name" name="name" class="input" required autocomplete="name" /></div>
+            <div><label for="email" class="label">Email <span class="font-normal text-ink-soft">(required)</span></label><input id="email" name="email" type="email" class="input" required autocomplete="email" /></div>
+            <div><label for="phone" class="label">Mobile phone</label><input id="phone" name="phone" type="tel" class="input" autocomplete="tel" /></div>
+            <div><label for="company" class="label">Company, firm, or store URL <span class="font-normal text-ink-soft">(required)</span></label><input id="company" name="company" class="input" required autocomplete="organization" /></div>
+          </div>
 
           <div>
             <label for="problem" class="label">What's not working? <span class="font-normal text-ink-soft">(required)</span></label>
-            <textarea id="problem" name="problem" class="textarea" required placeholder="The weekly report takes half a day. Email is three flows from 2023. Nobody will touch Zapier."></textarea>
+            <textarea id="problem" name="problem" class="textarea" required placeholder="We miss calls after 5. Estimates go quiet. The weekly report takes half a day. Nobody will touch Zapier."></textarea>
           </div>
 
           <label class="flex items-start gap-3 text-[15px] text-ink-soft">
@@ -72,19 +52,23 @@ const platforms = ['Shopify', 'Kit', 'Klaviyo', 'Meta Ads', 'Google Ads', 'Zapie
             <span>I agree to receive text messages from {site.name} about my request. Message frequency varies. Reply STOP to opt out, HELP for help. Msg &amp; data rates may apply. See our <a href="/privacy" class="link">Privacy Policy</a>.</span>
           </label>
 
-          <div>
-            <button type="submit" class="btn-primary">Request the audit</button>
-          </div>
+          <div><button type="submit" class="btn-primary">Request the call</button></div>
         </form>
+        <script is:inline>
+          const q = new URLSearchParams(location.search);
+          if (q.has('error')) document.getElementById('form-error').hidden = false;
+          const b = q.get('biz'); const sel = document.getElementById('biz');
+          if (b && sel && [...sel.options].some(o => o.value === b)) sel.value = b;
+        </script>
       </div>
 
       <aside class="lg:pt-24">
         <div class="card bg-paper-warm">
           <h2 class="h3">What happens next</h2>
           <ol class="mt-4 grid gap-3 text-[15px] text-ink-soft list-decimal pl-5">
-            <li>I reply within one business day.</li>
-            <li>A 30-minute call to confirm the audit is the right first step.</li>
-            <li>A written scope. If it's a fit, the audit starts that week.</li>
+            <li>I reply within one business day with two or three times.</li>
+            <li>A 30-minute call about your business and your tools.</li>
+            <li>You get a straight answer: which system fits, start with the audit, or nothing worth building yet.</li>
           </ol>
           <p class="mt-5 text-[15px] text-ink-soft">Prefer email? <a href={`mailto:${site.contactEmail}`} class="link">{site.contactEmail}</a></p>
         </div>

@@ -8,7 +8,7 @@ import { env } from 'cloudflare:workers';
 
 export const prerender = false;
 
-const ALLOWED_REDIRECTS = new Set(['/thanks/audit', '/thanks/real-estate']);
+const ALLOWED_REDIRECTS = new Set(['/thanks/audit', '/thanks/call', '/thanks/real-estate']);
 
 function redirect(to: string, status = 303) {
   return new Response(null, { status, headers: { Location: to } });
@@ -19,7 +19,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const form = await request.formData();
     const get = (k: string) => String(form.get(k) ?? '').trim();
-    const formName = get('form') || 'audit';
+    const formName = get('form') || 'call';
     back = formName === 'real-estate' ? '/real-estate/contact' : '/contact';
     const redirectTo = ALLOWED_REDIRECTS.has(get('redirect')) ? get('redirect') : '/thanks/audit';
 
@@ -38,6 +38,7 @@ export const POST: APIRoute = async ({ request }) => {
       email,
       phone: get('phone'),
       company: get('company'),
+      biz: get('biz'),
       revenue: get('revenue'),
       platforms: form.getAll('platforms').map(String),
       deal_type: get('deal_type'),

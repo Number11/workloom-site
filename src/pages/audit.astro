@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import DeliverableCard from '../components/DeliverableCard.astro';
+import Steps from '../components/Steps.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+const who = [
+  ['Law firms', 'Where inbound leads leak between the phone, intake, and the calendar; what an SMS intake system would recover.'],
+  ['Contractors', 'Where estimates go quiet; how many you could sign with follow-up that runs itself.'],
+  ['Shopify stores', 'Contribution margin by SKU, where ad spend stops paying back, which Zaps will break next.'],
+  ['Real estate operators', 'Deal pipeline, investor communication, the spreadsheets that should be a model.'],
+];
+---
+<Base title="The Business Audit" description={`A two-week audit of your systems, data, and processes. ${site.auditPrice}, fixed fee, ends in a plan ranked by dollar impact.`} cta={{ label: 'Book the audit', href: '/contact?biz=audit' }}>
+  <section class="section bg-ink text-white">
+    <div class="container-site grid gap-14 lg:grid-cols-2 items-center">
+      <div class="flex flex-col gap-6">
+        <p class="eyebrow !text-copper-bright">The Business Audit</p>
+        <h1 class="display max-w-[18ch]">Two weeks. One plan. Every fix priced.</h1>
+        <p class="text-lg md:text-xl text-mist max-w-[52ch]">I go through every tool you pay for, every handoff between them, and the numbers that come out the other end. You get a written plan ranked by dollar impact — and a fixed quote for anything worth building. If nothing is, the plan says so.</p>
+        <div class="flex gap-8 flex-wrap">
+          <div><span class="num block">{site.auditPrice}</span><span class="text-sm text-mist">fixed fee</span></div>
+          <div><span class="num block">1–2 wks</span><span class="text-sm text-mist">start to plan</span></div>
+          <div><span class="num block">11 pp</span><span class="text-sm text-mist">written plan, yours to keep</span></div>
+        </div>
+        <a href="/contact?biz=audit" class="btn-primary self-start">Book the audit</a>
+      </div>
+      <div class="flex justify-center lg:justify-end"><div class="w-full max-w-[480px] text-ink"><DeliverableCard /></div></div>
+    </div>
+  </section>
+
+  <Section eyebrow="Who it's for" title="Same audit. Four kinds of business.">
+    <div class="grid gap-5 md:grid-cols-2">
+      {who.map(([t, b]) => <div class="card"><span class="h3 block">{t}</span><span class="block mt-2 text-[15px] text-ink-soft">{b}</span></div>)}
+    </div>
+  </Section>
+
+  <Section tone="warm" eyebrow="How it works" title="Read-only access in. A ranked plan out.">
+    <Steps steps={[
+      { n: 'Week 0', title: 'Scope call', meta: '30 minutes', body: 'What you sell, what you pay for, what\'s not working. You grant read-only access to the systems that matter.' },
+      { n: 'Weeks 1–2', title: 'The audit', meta: 'I do the work', body: 'Systems map, failure points, the numbers rebuilt from source data, AI-tool fit, and a ranked fix list with the dollar impact of each.' },
+      { n: 'Week 2', title: 'The plan', meta: '60-minute walkthrough', body: 'The written plan, a fixed-scope quote for the top items, and a straight answer if nothing is worth building yet.' },
+    ]} />
+  </Section>
+
+  <Section eyebrow="Questions" title="Before you book.">
+    <Faq items={[
+      { q: 'What if I already know what I need?', a: 'Then skip the audit and book a call about that system. The audit is for owners who know something\'s wrong but not which thing to fix first.' },
+      { q: 'What does "dollar impact" mean?', a: 'For each item: hours it saves per month at your labor cost, revenue it recovers (missed leads, unsigned estimates, unprofitable SKUs), or spend it stops. Shown as a range, with the assumption written next to it.' },
+      { q: 'Do you need admin access?', a: 'Read-only wherever the platform allows it. You see exactly which systems and revoke access the day the audit ends.' },
+      { q: 'Is the audit fee credited toward a build?', a: 'No, and that\'s deliberate. The plan has to be worth the fee on its own, whether or not we work together after.' },
+    ]} />
+  </Section>
+
+  <CtaBand title="Start with the audit." body={`Fixed fee, ${site.auditDuration}, and you end up with a prioritized plan whether or not we work together after.`} label="Book the audit" href="/contact?biz=audit" />
+</Base>

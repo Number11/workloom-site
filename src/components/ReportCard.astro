@@ -1,0 +1,27 @@
+---
+// Weekly report card: ROAS by weekly spend with the ceiling marked. Numbers from the HLD case.
+const bars = [48, 62, 78, 92, 70, 52, 38];
+const labels = ['3.0k', '3.8k', '4.6k', '5.4k', '6.2k', '7.0k', '7.8k'];
+---
+<div class="w-full max-w-[480px] bg-paper text-ink rounded-[14px] p-6 flex flex-col gap-4 shadow-[0_30px_60px_rgba(0,0,0,.35)]">
+  <div class="flex justify-between items-center">
+    <span class="eyebrow !text-ink-soft !tracking-[.06em]">Weekly report · Wk 36</span>
+    <span class="font-mono text-xs text-ink-soft">Shopify · Meta · Google</span>
+  </div>
+  <div class="bg-paper-warm rounded-lg px-4 py-3.5 flex flex-col gap-1">
+    <span class="text-xs font-semibold uppercase tracking-[.06em] text-copper-ink">Decision of the week</span>
+    <span class="font-semibold leading-snug">Cap Meta spend at $5,460/wk. ROAS falls off above it.</span>
+  </div>
+  <div class="flex flex-col gap-2">
+    <div class="flex justify-between text-[13px] text-ink-soft"><span>ROAS by weekly spend</span><span class="font-mono">ceiling ▸ $5,460</span></div>
+    <div class="grid grid-cols-7 gap-2 items-end h-[120px] border-b border-line">
+      {bars.map((h, i) => <div class={`rounded-t ${i < 4 ? 'bg-teal' : 'bg-copper'}`} style={`height:${h}%`} />)}
+    </div>
+    <div class="grid grid-cols-7 gap-2 font-mono text-[11px] text-ink-soft text-center">{labels.map((l) => <span>{l}</span>)}</div>
+  </div>
+  <div class="grid grid-cols-3 gap-3">
+    <div><span class="font-mono text-[22px] font-semibold block">4.1×</span><span class="text-xs text-ink-soft">ROAS at ceiling</span></div>
+    <div><span class="font-mono text-[22px] font-semibold block text-teal">+$2.3k</span><span class="text-xs text-ink-soft">contribution / wk</span></div>
+    <div><span class="font-mono text-[22px] font-semibold block">61%</span><span class="text-xs text-ink-soft">margin by SKU</span></div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+---
+// The law-firm intake visual: missed call → text-back → four questions → booked.
+const msgs = [
+  { from: 'sys', text: 'Missed call · 7:42 PM' },
+  { from: 'firm', text: "Hi, this is Northbridge Injury Group. Sorry we missed your call — I can help right now by text. Were you hurt in an accident?" },
+  { from: 'lead', text: 'Yes, rear-ended on the 101 last Tuesday' },
+  { from: 'firm', text: 'I\'m sorry. Were you at fault, partly, or not at all?' },
+  { from: 'lead', text: 'Not at all, other driver got the ticket' },
+  { from: 'firm', text: 'Do you already have a lawyer on this?' },
+  { from: 'lead', text: 'No' },
+  { from: 'firm', text: 'An attorney can talk tomorrow at 10:00 or 2:30. Which works?' },
+  { from: 'lead', text: '10' },
+  { from: 'sys', text: 'Booked · Lead score 85 · Attorney notified' },
+];
+---
+<div class="w-full max-w-[380px] bg-paper text-ink rounded-[22px] p-4 flex flex-col gap-2 shadow-[0_30px_60px_rgba(0,0,0,.35)] border-[6px] border-ink">
+  <div class="text-center text-xs text-ink-soft font-mono py-1 border-b border-line">(602) 555-0147 · Northbridge demo</div>
+  {msgs.map((m) => m.from === 'sys'
+    ? <div class="text-center text-[11px] font-mono text-ink-soft py-1">{m.text}</div>
+    : <div class={`max-w-[85%] rounded-2xl px-3.5 py-2 text-[14px] leading-snug ${m.from === 'firm' ? 'self-start bg-paper-warm' : 'self-end bg-ink text-white'}`}>{m.text}</div>
+  )}
+</div>

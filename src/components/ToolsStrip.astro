@@ -1,0 +1,12 @@
+---
+import { site } from '../data/site';
+---
+<section class="bg-paper-warm border-y border-line">
+  <div class="container-site py-9 flex flex-col items-center gap-4">
+    <p class="eyebrow !text-ink-soft">Tools I work in every week</p>
+    <ul class="flex flex-wrap justify-center items-center gap-x-10 gap-y-3 font-bold text-xl md:text-2xl text-[#6B7280] tracking-tight">
+      {site.tools.map((t) => <li>{t}</li>)}
+    </ul>
+    <p class="text-[15px] text-ink-soft text-center max-w-[60ch]">Including which AI tools fit your business and which don't. That question is part of every audit.</p>
+  </div>
+</section>

@@ -1,209 +1,103 @@
 ---
 import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import ReportCard from '../components/ReportCard.astro';
+import ToolsStrip from '../components/ToolsStrip.astro';
+import AudienceTiles from '../components/AudienceTiles.astro';
+import DeliverableCard from '../components/DeliverableCard.astro';
+import ZapMap from '../components/ZapMap.astro';
+import CtaBand from '../components/CtaBand.astro';
 import { site } from '../data/site';
 
-const services = [
-  {
-    n: '01',
-    title: 'Revenue Reporting & Analytics',
-    promise: 'Weekly reporting that changes decisions, not a dashboard nobody opens.',
-    body: 'ROAS by spend level. Contribution margin by SKU. Subscription cohorts. One "decision of the week" at the top of every report.',
-    who: 'Shopify brands spending $10K+/month on ads without a clear read on which dollars are working.',
-  },
-  {
-    n: '02',
-    title: 'Email & Lifecycle Systems',
-    promise: 'Your list is your most underused asset. Turn it into a system.',
-    body: 'Account audit, then the flows that make money while you sleep: welcome, post-purchase, win-back, subscription onboarding, gift handling. Migration planning if your platform is the bottleneck.',
-    who: 'Brands with 50K+ subscribers and fewer than five automations actually running.',
-  },
-  {
-    n: '03',
-    title: 'Automation & Integration',
-    promise: 'Replace Zap sprawl with a system one person can maintain.',
-    body: 'Audit what you have, find the failure points, rebuild onto mapping tables and workflows with error handling. n8n, Shopify Flow, Airtable, Google Sheets, fulfillment sync.',
-    who: 'Operators who are afraid to open their Zapier account.',
-  },
-];
-
 const cases = [
-  {
-    num: '16 Zaps → 1 mapping table',
-    body: 'A Shopify brand had sixteen separate Zaps assigning email tags, sequences, and course access every time a product sold. Any new SKU meant editing all sixteen. Rebuilt as one Google Sheet keyed by SKU driving a single looping workflow.',
-    before: '16 Zaps, about an hour per new product, frequent silent failures.',
-    after: '1 workflow. A new product is one row. One place to look when something\'s wrong.',
-  },
-  {
-    num: 'Found the spend level where ROAS breaks',
-    body: 'Weekly ROAS-by-spend analysis for HandleLetteredDesign.com showed returns dropping off above roughly $5,460/week in ad spend and recovering at lower daily budgets. The report produced a budget ceiling, not a chart.',
-    before: 'Budget set by feel.',
-    after: 'A number to spend to, reviewed weekly.',
-  },
-  {
-    num: '117 sequences audited, 5-phase cleanup',
-    body: 'A Kit account with 117 sequences and years of accumulated tags. Full audit, then a five-phase cleanup checklist the team could work through without breaking anything live. Separately, a Kit-to-Klaviyo evaluation across ~145K active subscribers produced a 6–8 week migration plan with cost scenarios.',
-    before: 'Nobody knew what was still running.',
-    after: 'A list, a plan, and a decision on the platform.',
-  },
+  { num: '16 → 1', title: 'Sixteen Zaps replaced by one mapping table', body: 'Shopify brand. New product went from an hour of Zap edits to one spreadsheet row.', tag: 'Integrations' },
+  { num: '$5,460', title: 'The weekly spend where ROAS breaks', body: 'HandleLetteredDesign.com. Budget went from gut feel to a number reviewed every Monday.', tag: 'Profitability reporting' },
+  { num: '117', title: 'Email sequences audited, five-phase cleanup', body: 'Kit account with years of tag sprawl. Plus a 145K-subscriber migration plan with cost scenarios.', tag: 'Email systems' },
 ];
 ---
 <Base
-  title="WorkLoom — Revenue Operations & Automation for Owner-Operated Businesses"
-  description="Weekly reporting that drives decisions, email systems that make money, and automations one person can maintain. Audit first, build second. Phoenix-based, works remote."
+  title="WorkLoom — Lead-to-contract systems, profitability reporting, and automation for owner-operated businesses"
+  description="Built for contractors, law firms, and Shopify stores by one person who shows you the spreadsheet. Start with a solution, or a $2,500 audit if you don't know where to start."
 >
   <!-- HERO -->
-  <section class="section bg-paper">
-    <div class="container-site">
-      <p class="eyebrow">Revenue operations and automation for owner-operated businesses</p>
-      <h1 class="display mt-4 max-w-[18ch]">You're paying for four part-time jobs. You need one system.</h1>
-      <p class="lede mt-6">Reporting, email, ads data, and the automations that connect them — built from the tools you already own, run by one person who shows you the spreadsheet.</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/contact" class="btn-primary">Start with an audit</a>
-        <a href="#proof" class="btn-secondary">See the case studies</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROOF STRIP -->
-  <section class="border-y border-line bg-paper-warm">
-    <div class="container-site py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-      {site.proof.map((p) => (
-        <div>
-          <p class="num text-ink">{p.num}</p>
-          <p class="mt-2 text-[15px] text-ink-soft">{p.label}</p>
+  <section class="section bg-ink text-white">
+    <div class="container-site grid gap-14 lg:grid-cols-2 items-center">
+      <div class="flex flex-col gap-6">
+        <p class="eyebrow !text-copper-bright">Systems that make money for owner-operated businesses</p>
+        <h1 class="display max-w-[18ch]">If your tools don't talk to each other, who's doing the work in between?</h1>
+        <p class="text-lg md:text-xl text-mist max-w-[52ch]">Lead-to-contract systems, profitability reporting, and the automations between your tools — built for contractors, law firms, and Shopify stores by one person who shows you the spreadsheet.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#solutions" class="btn-primary">Find your solution</a>
+          <a href="/audit" class="btn-secondary-dark">Start with a {site.auditPrice} audit</a>
         </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- PROBLEM -->
-  <section class="section">
-    <div class="container-site grid gap-10 md:grid-cols-2 md:gap-16 items-start">
-      <h2 class="h2">Your tools work. Your system doesn't.</h2>
-      <div class="prose-site text-ink-soft">
-        <p>Shopify, Kit or Klaviyo, Meta, Google, Zapier, a fulfillment app, and six spreadsheets. Each one does its job. Nobody owns the part in between.</p>
-        <p>So the weekly report takes half a day and still doesn't say what to change. Email runs on three flows built two years ago. Nobody touches Zapier because nobody knows what will break. And the ad budget goes up or down on a gut feeling.</p>
-        <p class="text-ink font-medium">That's not a tools problem. It's an operations problem, and it's fixable in weeks, not quarters.</p>
       </div>
+      <div class="flex justify-center lg:justify-end"><ReportCard /></div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="section bg-paper-warm scroll-mt-20">
-    <div class="container-site">
-      <p class="eyebrow">What WorkLoom does</p>
-      <h2 class="h2 mt-3">Three service lines. One operating system.</h2>
-      <div class="mt-10 grid gap-5 md:grid-cols-3">
-        {services.map((s) => (
-          <article class="card flex flex-col">
-            <p class="font-mono text-copper text-sm font-semibold">{s.n}</p>
-            <h3 class="h3 mt-2">{s.title}</h3>
-            <p class="mt-3 font-medium">{s.promise}</p>
-            <p class="mt-3 text-[15px] text-ink-soft">{s.body}</p>
-            <p class="mt-auto pt-5 text-[15px] text-ink-soft"><span class="font-semibold text-ink">For:</span> {s.who}</p>
-          </article>
-        ))}
+  <ToolsStrip />
+
+  <!-- AUDIENCES -->
+  <Section id="solutions" eyebrow="Who it's for" title="Four kinds of business. A built solution for each." lede="Pick yours. Each page shows the system I install and what it replaces.">
+    <AudienceTiles />
+  </Section>
+
+  <!-- AUDIT -->
+  <Section id="audit" tone="warm">
+    <div class="grid gap-12 lg:grid-cols-2 items-start">
+      <div class="flex flex-col gap-5">
+        <p class="eyebrow">Don't know where to start? Start here.</p>
+        <h2 class="h2">The Business Audit. Two weeks. Every fix priced.</h2>
+        <p class="text-lg text-ink-soft">If you already know which system you need, skip this and book the call. If you don't, I go through every tool you pay for, every handoff between them, and the numbers that come out the other end. You get a written plan ranked by dollar impact. If nothing's worth building, the plan says so.</p>
+        <div class="flex gap-8 flex-wrap pt-2">
+          <div><span class="num block">{site.auditPrice}</span><span class="text-sm text-ink-soft">fixed fee</span></div>
+          <div><span class="num block">1–2 wks</span><span class="text-sm text-ink-soft">start to plan</span></div>
+          <div><span class="num block">0</span><span class="text-sm text-ink-soft">hourly meters</span></div>
+        </div>
+        <a href="/audit" class="btn-primary self-start">About the audit</a>
       </div>
+      <DeliverableCard />
     </div>
-  </section>
+  </Section>
 
-  <!-- HOW IT WORKS -->
-  <section class="section">
-    <div class="container-site">
-      <p class="eyebrow">How it works</p>
-      <h2 class="h2 mt-3">Audit first. Always.</h2>
-      <ol class="mt-10 grid gap-5 md:grid-cols-3">
-        <li class="card">
-          <p class="font-mono text-copper text-sm font-semibold">Step 1</p>
-          <h3 class="h3 mt-2">Audit</h3>
-          <p class="mt-1 font-mono text-[15px] text-ink-soft">{site.auditPrice} · {site.auditDuration} · fixed fee</p>
-          <p class="mt-3 text-[15px] text-ink-soft">I go through your stack, your data, and your numbers. You get a prioritized plan with the expected impact of each item, in dollars where the data supports it. If nothing's worth building, the plan says so.</p>
-        </li>
-        <li class="card">
-          <p class="font-mono text-copper text-sm font-semibold">Step 2</p>
-          <h3 class="h3 mt-2">Build</h3>
-          <p class="mt-1 font-mono text-[15px] text-ink-soft">fixed scope · quoted from the audit</p>
-          <p class="mt-3 text-[15px] text-ink-soft">No hourly meters, no open-ended retainers to get something built.</p>
-        </li>
-        <li class="card">
-          <p class="font-mono text-copper text-sm font-semibold">Step 3</p>
-          <h3 class="h3 mt-2">Operate</h3>
-          <p class="mt-1 font-mono text-[15px] text-ink-soft">optional · monthly</p>
-          <p class="mt-3 text-[15px] text-ink-soft">Reporting, email ops, and automation maintenance on a monthly retainer. One system, one person, one invoice instead of four.</p>
-        </li>
-      </ol>
-      <p class="mt-6 text-[15px] text-ink-soft">I don't quote a build without an audit. The audit is how we both know the build is worth it.</p>
-    </div>
-  </section>
+  <!-- SYSTEMS MAP -->
+  <Section eyebrow="What the work looks like" title="Your tools work. Your system doesn't." lede="Each app does its job. Nobody owns the part in between. I map that part, then replace it with one path a single person can maintain.">
+    <ZapMap />
+  </Section>
 
   <!-- PROOF -->
-  <section id="proof" class="section bg-paper-warm scroll-mt-20">
-    <div class="container-site">
-      <p class="eyebrow">Proof</p>
-      <h2 class="h2 mt-3">The numbers, not the adjectives.</h2>
-      <div class="mt-10 grid gap-5">
-        {cases.map((c) => (
-          <article class="card grid gap-5 md:grid-cols-[1.2fr_1fr] md:gap-10">
-            <div>
-              <h3 class="h3 font-mono">{c.num}</h3>
-              <p class="mt-3 text-[15px] text-ink-soft">{c.body}</p>
-            </div>
-            <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-[15px] self-center">
-              <dt class="font-semibold text-ink-soft">Before</dt><dd>{c.before}</dd>
-              <dt class="font-semibold text-teal">After</dt><dd>{c.after}</dd>
-            </dl>
-          </article>
-        ))}
+  <Section id="proof" tone="warm" eyebrow="Proof" title="The numbers, not the adjectives.">
+    <div class="grid gap-5 md:grid-cols-3">
+      {cases.map((c) => (
+        <article class="card flex flex-col gap-3.5">
+          <span class="font-mono text-[40px] font-semibold leading-none">{c.num}</span>
+          <span class="text-lg font-semibold leading-snug">{c.title}</span>
+          <span class="text-[15px] text-ink-soft">{c.body}</span>
+          <span class="mt-auto pt-3 border-t border-line text-sm text-ink-soft">{c.tag}</span>
+        </article>
+      ))}
+    </div>
+    <div class="card mt-5 flex gap-6 items-center flex-wrap">
+      <div class="size-16 rounded-full bg-line grid place-items-center text-xs text-ink-soft shrink-0">photo</div>
+      <div class="flex-1 min-w-[280px]">
+        <p class="text-lg leading-relaxed">“[One line from Lisa about what changed after the reporting and automation work.]”</p>
+        <p class="mt-1.5 text-sm text-ink-soft"><strong class="text-ink">Lisa</strong> · Founder, HandleLetteredDesign.com</p>
       </div>
     </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section class="section">
-    <div class="container-site grid gap-8 md:grid-cols-2 md:gap-16 items-start">
-      <div>
-        <p class="eyebrow">Products</p>
-        <h2 class="h2 mt-3">I ship things, not just plans.</h2>
-      </div>
-      <div class="card">
-        <h3 class="h3">LotCheck</h3>
-        <p class="mt-3 text-[15px] text-ink-soft">A white-label lot evaluator for casita and ADU builders. Embeds on your site, qualifies the lead, sends it to your CRM by webhook. <span class="font-mono text-ink">$149/mo</span>, 14-day free trial, Phoenix-area to start.</p>
-        <a href="https://casita-site.andypfunk.workers.dev/lot-check/" class="link mt-4 inline-block" rel="noopener">Try the live demo →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- REAL ESTATE HAND-OFF -->
-  <section class="section bg-paper-warm">
-    <div class="container-site grid gap-8 md:grid-cols-2 md:gap-16 items-start">
-      <h2 class="h2">Also: deal and investor systems for small developers.</h2>
-      <div class="prose-site text-ink-soft">
-        <p>Underwriting and feasibility models, construction loan schedules, entitlement critical paths, and the investor CRM and email infrastructure to go with them. Separate buyer, separate page.</p>
-        <p class="text-[15px]">Real estate page coming soon. Until then, <a href="/contact" class="link">use the contact form</a> and mention the deal.</p>
-      </div>
-    </div>
-  </section>
+  </Section>
 
   <!-- ABOUT -->
-  <section id="about" class="section scroll-mt-20">
-    <div class="container-site grid gap-8 md:grid-cols-2 md:gap-16 items-start">
-      <div>
+  <Section id="about">
+    <div class="grid gap-12 lg:grid-cols-[320px_1fr] items-center">
+      <div class="w-[280px] h-[340px] rounded-[14px] bg-paper-warm border border-line grid place-items-center text-sm text-ink-soft mx-auto">[Real photo of Andy]</div>
+      <div class="flex flex-col gap-4">
         <p class="eyebrow">Who's doing the work</p>
-        <h2 class="h2 mt-3">{site.owner}, {site.city.replace(', AZ', '')}.</h2>
-      </div>
-      <div class="prose-site text-ink-soft">
-        <p>I've run marketing and operations for a Shopify brand since 2016 — reporting, email, ads data, automations, subscription launch, the whole stack — and I underwrite commercial real estate on the side. WorkLoom is that same work, offered to other owner-operators.</p>
-        <p class="text-ink font-medium">Not an agency. No account managers. The person you talk to is the person building it.</p>
+        <h2 class="h2">{site.owner}, Phoenix.</h2>
+        <p class="text-lg text-ink-soft">I've run marketing and operations for a Shopify brand since 2016 — reporting, email, ads data, automations, subscription launch, the whole stack — and I underwrite commercial real estate on the side. WorkLoom is that same work, offered to other owner-operators.</p>
+        <p class="text-lg font-semibold">Not an agency. No account managers. The person you talk to is the person building it.</p>
       </div>
     </div>
-  </section>
+  </Section>
 
-  <!-- FINAL CTA -->
-  <section class="section bg-ink text-white">
-    <div class="container-site max-w-3xl">
-      <h2 class="h2">Start with the audit.</h2>
-      <p class="mt-5 text-lg text-mist max-w-[60ch]">Fixed fee, {site.auditDuration}, and you end up with a prioritized plan whether or not we work together after. Tell me about your stack and what's not working.</p>
-      <a href="/contact" class="btn-primary mt-8">Book an audit</a>
-    </div>
-  </section>
+  <CtaBand title="Tell me what's not working." body="Thirty minutes about your business and your tools. I'll tell you which system fits, or that you should start with the audit, or that there's nothing worth building yet." secondary={{ label: `Start with a ${site.auditPrice} audit`, href: '/audit' }} />
 </Base>

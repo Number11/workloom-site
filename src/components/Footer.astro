@@ -5,8 +5,8 @@ const year = new Date().getFullYear();
 <footer class="bg-ink text-mist">
   <div class="container-site py-12 md:py-16 grid gap-8 md:grid-cols-[1fr_auto]">
     <div class="max-w-md">
-      <p class="text-white font-bold text-lg">{site.name}.ai</p>
-      <p class="mt-2 text-[15px]">{site.tagline}. {site.city}.</p>
+      <p class="flex items-center gap-3 text-white font-bold text-lg"><img src="/brand/fabric-on-dark.svg" alt="" width="60" height="34" class="h-[34px] w-auto" />{site.name}.ai</p>
+      <p class="mt-2 text-[15px]">{site.tagline} — for contractors, law firms, and Shopify stores. {site.city}.</p>
       <p class="mt-4 text-[15px]"><a href={`mailto:${site.contactEmail}`} class="hover:text-white underline underline-offset-4">{site.contactEmail}</a></p>
     </div>
     <ul class="grid grid-cols-2 gap-x-10 gap-y-2 text-[15px]">

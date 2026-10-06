@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+---
+<Base title="Got it" description="Your request is in." noindex>
+  <section class="section">
+    <div class="container-site max-w-2xl">
+      <p class="eyebrow">Request received</p>
+      <h1 class="h2 mt-3">Got it.</h1>
+      <div class="prose-site mt-6 text-ink-soft">
+        <p>Here's what happens next: I read what you sent, look at your site or store if you gave me a URL, and reply from <a href={`mailto:${site.contactEmail}`} class="link">{site.contactEmail}</a> within one business day with a couple of times for a 30-minute call.</p>
+        <p>If you don't see anything by the end of the next business day, check spam, then email me directly.</p>
+      </div>
+      <p class="mt-8"><a href="/#proof" class="link">Read the case studies while you wait →</a></p>
+    </div>
+  </section>
+</Base>
