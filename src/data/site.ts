@@ -65,4 +65,5 @@ export const footerNav = [
   { label: 'Contact', href: '/contact' },
   { label: 'Privacy', href: '/privacy' },
   { label: 'Terms', href: '/terms' },
+  { label: 'SMS Terms', href: '/terms#sms' },
 ];
