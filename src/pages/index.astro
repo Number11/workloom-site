@@ -9,11 +9,6 @@ import ZapMap from '../components/ZapMap.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site } from '../data/site';
 
-const cases = [
-  { num: '16 → 1', title: 'Sixteen Zaps replaced by one mapping table', body: 'Shopify brand. New product went from an hour of Zap edits to one spreadsheet row.', tag: 'Integrations' },
-  { num: '$5,460', title: 'The weekly spend where ROAS breaks', body: 'HandleLetteredDesign.com. Budget went from gut feel to a number reviewed every Monday.', tag: 'Profitability reporting' },
-  { num: '117', title: 'Email sequences audited, five-phase cleanup', body: 'Kit account with years of tag sprawl. Plus a 145K-subscriber migration plan with cost scenarios.', tag: 'Email systems' },
-];
 ---
 <Base
   title="WorkLoom — Lead-to-contract systems, profitability reporting, and automation for owner-operated businesses"
@@ -65,31 +60,13 @@ const cases = [
     <ZapMap />
   </Section>
 
-  <!-- PROOF -->
-  <Section id="proof" tone="warm" eyebrow="Proof" title="The numbers, not the adjectives.">
-    <div class="grid gap-5 md:grid-cols-3">
-      {cases.map((c) => (
-        <article class="card flex flex-col gap-3.5">
-          <span class="font-mono text-[40px] font-semibold leading-none">{c.num}</span>
-          <span class="text-lg font-semibold leading-snug">{c.title}</span>
-          <span class="text-[15px] text-ink-soft">{c.body}</span>
-          <span class="mt-auto pt-3 border-t border-line text-sm text-ink-soft">{c.tag}</span>
-        </article>
-      ))}
-    </div>
-    <div class="card mt-5 flex gap-6 items-center flex-wrap">
-      <div class="size-16 rounded-full bg-line grid place-items-center text-xs text-ink-soft shrink-0">photo</div>
-      <div class="flex-1 min-w-[280px]">
-        <p class="text-lg leading-relaxed">“[One line from Lisa about what changed after the reporting and automation work.]”</p>
-        <p class="mt-1.5 text-sm text-ink-soft"><strong class="text-ink">Lisa</strong> · Founder, HandleLetteredDesign.com</p>
-      </div>
-    </div>
-  </Section>
-
   <!-- ABOUT -->
   <Section id="about">
     <div class="grid gap-12 lg:grid-cols-[320px_1fr] items-center">
-      <div class="w-[280px] h-[340px] rounded-[14px] bg-paper-warm border border-line grid place-items-center text-sm text-ink-soft mx-auto">[Real photo of Andy]</div>
+      <picture class="block w-[280px] mx-auto">
+        <source srcset="/images/andy.webp" type="image/webp" />
+        <img src="/images/andy.jpg" alt="Andy Funk, founder of WorkLoom" width="960" height="1200" loading="lazy" class="w-[280px] h-[350px] object-cover rounded-[14px] border border-line" />
+      </picture>
       <div class="flex flex-col gap-4">
         <p class="eyebrow">Who's doing the work</p>
         <h2 class="h2">{site.owner}, Phoenix.</h2>

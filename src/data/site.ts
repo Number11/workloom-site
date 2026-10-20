@@ -19,14 +19,6 @@ export const site = {
   auditPrice: '$2,500',
   auditDuration: '1–2 weeks',
 
-  // Homepage proof strip. CONFIRM before publish.
-  proof: [
-    { num: '16 → 1', label: 'Zaps replaced by one mapping table' },
-    { num: '$5,460', label: 'weekly ad spend where ROAS broke' },
-    { num: '117', label: 'email sequences audited' },
-    { num: '<10s', label: 'reply to a missed call, day or night' },
-  ],
-
   // Tools strip (homepage). Rendered as grey wordmarks until official SVGs are in.
   tools: ['Shopify', 'Zapier', 'Make', 'GoHighLevel', 'Claude', 'OpenAI'],
 
@@ -39,7 +31,6 @@ export const cta = { label: 'Book a call', href: '/contact' };
 
 export const nav = [
   { label: 'The Audit', href: '/audit' },
-  { label: 'Case Studies', href: '/#proof' },
   { label: 'About', href: '/#about' },
 ];
 
