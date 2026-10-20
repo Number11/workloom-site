@@ -41,5 +41,14 @@ const fullTitle = Astro.url.pathname === '/' ? title : `${title} — ${site.name
       <slot />
     </main>
     <Footer />
+    {site.ghlChatWidgetId && !noindex && (
+      <script
+        is:inline
+        src="https://widgets.leadconnectorhq.com/loader.js"
+        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+        data-widget-id={site.ghlChatWidgetId}
+        data-source="WEB_USER"
+      ></script>
+    )}
   </body>
 </html>

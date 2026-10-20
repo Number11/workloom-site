@@ -22,6 +22,10 @@ export const site = {
   // Tools strip (homepage). Rendered as grey wordmarks until official SVGs are in.
   tools: ['Shopify', 'Zapier', 'Make', 'GoHighLevel', 'Claude', 'OpenAI'],
 
+  // GoHighLevel chat widget (Sites → Chat Widget → Get Code). Leave blank to turn it off.
+  // It is not loaded on noindex pages (the demo page gets its own widget).
+  ghlChatWidgetId: '6ad6f942e0d80451b7cb56df',
+
   // Legal dates
   privacyEffective: 'October 7, 2026',
   termsEffective: 'October 7, 2026',
