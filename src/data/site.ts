@@ -15,8 +15,8 @@ export const site = {
   contactEmail: 'andy@workloom.ai',
   phone: '', // leave blank to hide
 
-  // Pricing. Only the audit is priced publicly for now.
-  auditPrice: '$2,500',
+  // Pricing. The audit price is not shown on the site (decided Oct 2026); quoted on the call.
+  auditPrice: '',
   auditDuration: '1–2 weeks',
 
   // Tools strip (homepage). Rendered as grey wordmarks until official SVGs are in.

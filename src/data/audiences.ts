@@ -150,7 +150,7 @@ export const audiences: Record<string, Audience> = {
       caption: 'Seven tools, six handoffs, nobody watching the gaps. Each one gets graded, with the cost in hours and dollars.',
     },
     steps: [
-      { n: 'Step 1', title: 'Audit or scope call', meta: 'audit $2,500 · 1–2 weeks', body: 'Read-only access to Shopify, your email platform, ad accounts, and Zapier. You get the plan, or if you already know which piece you need, a scope.' },
+      { n: 'Step 1', title: 'Audit or scope call', meta: 'audit · 1–2 weeks', body: 'Read-only access to Shopify, your email platform, ad accounts, and Zapier. You get the plan, or if you already know which piece you need, a scope.' },
       { n: 'Step 2', title: 'Build', meta: 'fixed scope', body: 'Reporting pipeline, ad account restructure, or the integration rebuild — whichever comes first.' },
       { n: 'Step 3', title: 'Operate', meta: 'monthly', body: 'Weekly report, ad management, automation maintenance. One person, one invoice.' },
     ],
@@ -160,7 +160,7 @@ export const audiences: Record<string, Audience> = {
       { q: 'Can you just run our Meta ads?', a: 'Yes, once there\'s a margin report to run them against. Ads without margin data is how stores scale losses.' },
     ],
     ctaTitle: 'Find out which orders make money.',
-    ctaBody: 'Two weeks, $2,500, and a plan you keep either way. Or if you know which piece you need, book the call and we\'ll scope it.',
+    ctaBody: 'Two weeks, one fixed fee, and a plan you keep either way. Or if you know which piece you need, book the call and we\'ll scope it.',
     ctaLabel: 'Book a call',
     tileTitle: 'Shopify stores',
     tileBlurb: 'Profitability reporting by SKU, Meta ads run against margin, and the Zapier or n8n integrations your sales process needs.',

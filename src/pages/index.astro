@@ -12,7 +12,7 @@ import { site } from '../data/site';
 ---
 <Base
   title="WorkLoom — Lead-to-contract systems, profitability reporting, and automation for owner-operated businesses"
-  description="Built for contractors, law firms, and Shopify stores by one person who shows you the spreadsheet. Start with a solution, or a $2,500 audit if you don't know where to start."
+  description="Built for contractors, law firms, and Shopify stores by one person who shows you the spreadsheet. Start with a solution, or an audit if you don't know where to start."
 >
   <!-- HERO -->
   <section class="section bg-ink text-white">
@@ -23,7 +23,7 @@ import { site } from '../data/site';
         <p class="text-lg md:text-xl text-mist max-w-[52ch]">Lead-to-contract systems, profitability reporting, and the automations between your tools — built for contractors, law firms, and Shopify stores by one person who shows you the spreadsheet.</p>
         <div class="flex flex-wrap gap-3">
           <a href="#solutions" class="btn-primary">Find your solution</a>
-          <a href="/audit" class="btn-secondary-dark">Start with a {site.auditPrice} audit</a>
+          <a href="/audit" class="btn-secondary-dark">Start with an audit</a>
         </div>
       </div>
       <div class="flex justify-center lg:justify-end"><ReportCard /></div>
@@ -45,7 +45,7 @@ import { site } from '../data/site';
         <h2 class="h2">The Business Audit. Two weeks. Every fix priced.</h2>
         <p class="text-lg text-ink-soft">If you already know which system you need, skip this and book the call. If you don't, I go through every tool you pay for, every handoff between them, and the numbers that come out the other end. You get a written plan ranked by dollar impact. If nothing's worth building, the plan says so.</p>
         <div class="flex gap-8 flex-wrap pt-2">
-          <div><span class="num block">{site.auditPrice}</span><span class="text-sm text-ink-soft">fixed fee</span></div>
+          <div><span class="num block">Fixed</span><span class="text-sm text-ink-soft">fee, quoted up front</span></div>
           <div><span class="num block">1–2 wks</span><span class="text-sm text-ink-soft">start to plan</span></div>
           <div><span class="num block">0</span><span class="text-sm text-ink-soft">hourly meters</span></div>
         </div>
@@ -76,5 +76,5 @@ import { site } from '../data/site';
     </div>
   </Section>
 
-  <CtaBand title="Tell me what's not working." body="Thirty minutes about your business and your tools. I'll tell you which system fits, or that you should start with the audit, or that there's nothing worth building yet." secondary={{ label: `Start with a ${site.auditPrice} audit`, href: '/audit' }} />
+  <CtaBand title="Tell me what's not working." body="Thirty minutes about your business and your tools. I'll tell you which system fits, or that you should start with the audit, or that there's nothing worth building yet." secondary={{ label: 'Start with an audit', href: '/audit' }} />
 </Base>
