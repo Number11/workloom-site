@@ -24,7 +24,7 @@ export const site = {
 
   // GoHighLevel chat widget (Sites → Chat Widget → Get Code). Leave blank to turn it off.
   // It is not loaded on noindex pages (the demo page gets its own widget).
-  ghlChatWidgetId: '6ad6f942e0d80451b7cb56df',
+  ghlChatWidgetId: '6adc1807c5fa611730e14705',
 
   // Legal dates
   privacyEffective: 'October 7, 2026',
