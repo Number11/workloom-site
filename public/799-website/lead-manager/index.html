@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Optional: Lead Manager | Workloom</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/799-website/styles.css">
+</head>
+<body>
+
+<header class="dark topbar">
+<div class="wrap"><div class="brand">WORKLOOM</div><div class="muted small">Optional extra 1 of 2</div></div>
+</header>
+
+<main>
+<section>
+<div class="wrap narrow stack" style="gap:24px">
+<div class="stack" style="gap:10px">
+<div class="eyebrow">Got it. Your $799 site is on the list.</div>
+<h1 style="font-size:clamp(32px,6vw,48px)">Want help keeping up with your leads?</h1>
+<p class="muted">The lead manager is optional and billed monthly. Pick a plan, or skip it. You can add one any time after launch.</p>
+</div>
+
+<div data-wl-video-wrap hidden><div class="video" data-wl-video="leadManager" data-title="How the lead manager works"></div></div>
+
+<div class="plan">
+<div>
+<div class="amount">$150 a month</div>
+<h2 style="font-size:22px">Lead manager</h2>
+<p class="muted">Every inquiry saved to one contact list, with automatic email replies and follow-ups so no one waits to hear back.</p>
+</div>
+<button type="button" class="btn" data-plan="150">Add for $150/mo</button>
+</div>
+
+<div class="plan">
+<div>
+<div class="amount">$200 a month</div>
+<h2 style="font-size:22px">Lead manager with AI assistant</h2>
+<p class="muted">Everything above, plus an AI assistant on your site that answers customer questions and collects their details, day or night.</p>
+</div>
+<button type="button" class="btn" data-plan="200">Add for $200/mo</button>
+</div>
+
+<div class="plan">
+<div>
+<div class="amount">$300 a month</div>
+<h2 style="font-size:22px">Lead manager with AI and a business phone line</h2>
+<p class="muted">Everything above, plus a business number that sends a text back to anyone whose call you miss.</p>
+</div>
+<button type="button" class="btn" data-plan="300">Add for $300/mo</button>
+</div>
+
+<p class="error" id="err" role="alert" hidden></p>
+<div><button type="button" class="linkbtn" data-plan="0">No thanks, just the website</button></div>
+</div>
+</section>
+</main>
+
+<footer class="dark">
+<div class="wrap">
+<div>Workloom LLC, Gilbert, Arizona · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></div>
+<div data-wl-contact=""></div>
+</div>
+</footer>
+
+<script src="/799-website/site-config.js"></script>
+<script src="/799-website/app.js"></script>
+<script>
+(function () {
+  if (!WL.load().email) { location.replace('/799-website/#start'); return; }
+  var err = document.getElementById('err');
+  var buttons = document.querySelectorAll('[data-plan]');
+  function choose(e) {
+    var plan = e.currentTarget.getAttribute('data-plan');
+    for (var i = 0; i < buttons.length; i++) buttons[i].disabled = true;
+    WL.send('lead_manager', { lead_manager_plan: plan }).then(function (ok) {
+      if (!ok) {
+        for (var i = 0; i < buttons.length; i++) buttons[i].disabled = false;
+        err.textContent = 'We could not save your choice. Please try again in a moment.';
+        err.hidden = false;
+        return;
+      }
+      location.href = '/799-website/video/';
+    });
+  }
+  for (var i = 0; i < buttons.length; i++) buttons[i].addEventListener('click', choose);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Thanks, we have your info | Workloom</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/799-website/styles.css">
+</head>
+<body>
+
+<header class="dark topbar">
+<div class="wrap"><div class="brand">WORKLOOM</div></div>
+</header>
+
+<main>
+<section>
+<div class="wrap narrow stack" style="gap:24px">
+<div class="stack" style="gap:10px">
+<div class="eyebrow">You are all set</div>
+<h1 style="font-size:clamp(32px,6vw,48px)">Thanks. We have your info.</h1>
+<p class="muted">We will email your secure checkout link shortly. If you agreed to texts, we will text it too.</p>
+</div>
+
+<div class="summary" id="summary" hidden>
+<h2 style="font-size:22px;margin-bottom:14px">Your order</h2>
+<dl>
+<div><dt>Website, delivered in 7 days</dt><dd>$799</dd></div>
+<div id="row-video" hidden><dt>Owner video</dt><dd>$799</dd></div>
+<div style="border-top:1px solid var(--line);padding-top:10px"><dt>Due at checkout</dt><dd id="today"></dd></div>
+<div id="row-plan" hidden><dt id="plan-name"></dt><dd id="plan-price"></dd></div>
+</dl>
+</div>
+
+<div class="stack" style="gap:14px">
+<h2 style="font-size:24px">What happens next</h2>
+<div class="step"><div class="num">1</div><p>Pay through the checkout link we send you.</p></div>
+<div class="step"><div class="num">2</div><p>Upload your logo and photos using the link that follows.</p></div>
+<div class="step"><div class="num">3</div><p>Your site is ready to review within 7 days of your photos.</p></div>
+</div>
+
+<p class="muted small" data-wl-contact="Questions? Reach us at "></p>
+</div>
+</section>
+</main>
+
+<footer class="dark">
+<div class="wrap">
+<div>Workloom LLC, Gilbert, Arizona · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></div>
+</div>
+</footer>
+
+<script src="/799-website/site-config.js"></script>
+<script src="/799-website/app.js"></script>
+<script>
+(function () {
+  var lead = WL.load();
+  if (!lead.email) return;
+  var video = lead.owner_video === 'yes';
+  var plan = parseInt(lead.lead_manager_plan || '0', 10);
+  var names = { 150: 'Lead manager', 200: 'Lead manager with AI assistant', 300: 'Lead manager with AI and phone line' };
+  document.getElementById('summary').hidden = false;
+  document.getElementById('row-video').hidden = !video;
+  document.getElementById('today').textContent = video ? '$1,598' : '$799';
+  if (names[plan]) {
+    document.getElementById('row-plan').hidden = false;
+    document.getElementById('plan-name').textContent = names[plan];
+    document.getElementById('plan-price').textContent = '$' + plan + ' a month';
+  }
+  WL.track('CompleteRegistration');
+})();
+</script>
+</body>
+</html>
