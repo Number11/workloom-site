@@ -28,7 +28,7 @@ export const site = {
 
   // Legal dates
   privacyEffective: 'October 7, 2026',
-  termsEffective: 'October 7, 2026',
+  termsEffective: 'November 18, 2026',
 };
 
 export const cta = { label: 'Book a call', href: '/contact' };
