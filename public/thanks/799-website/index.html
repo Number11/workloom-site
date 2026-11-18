@@ -20,7 +20,7 @@
 <div class="stack" style="gap:10px">
 <div class="eyebrow">You are all set</div>
 <h1 style="font-size:clamp(32px,6vw,48px)">Thanks. We have your info.</h1>
-<p class="muted">We will email your secure checkout link shortly. If you agreed to texts, we will text it too.</p>
+<p class="muted" id="intro">We will email your secure checkout link shortly. If you agreed to texts, we will text it too.</p>
 </div>
 
 <div class="summary" id="summary" hidden>
@@ -28,14 +28,26 @@
 <dl>
 <div><dt>Website, delivered in 7 days</dt><dd>$799</dd></div>
 <div id="row-video" hidden><dt>Owner video</dt><dd>$799</dd></div>
-<div style="border-top:1px solid var(--line);padding-top:10px"><dt>Due at checkout</dt><dd id="today"></dd></div>
+<div style="border-top:1px solid var(--line);padding-top:10px"><dt>One-time total</dt><dd id="today"></dd></div>
 <div id="row-plan" hidden><dt id="plan-name"></dt><dd id="plan-price"></dd></div>
 </dl>
 </div>
 
+<div class="stack" id="combobox" style="gap:10px" hidden>
+<div><a class="btn" id="pay-combo" href="#">Go to secure checkout</a></div>
+<p class="muted small">One checkout for everything in your order. Full refund on the website any time before it goes live. See the <a href="/terms#website-package">Terms</a>.</p>
+</div>
+
+<div class="stack" id="paybox" style="gap:12px" hidden>
+<div><a class="btn" id="pay-site" href="#" target="_blank" rel="noopener">Pay $799 and start my site</a></div>
+<div id="pay-video-row" hidden><a class="btn ghost" id="pay-video" href="#" target="_blank" rel="noopener">Pay $799 for the owner video</a></div>
+<div id="pay-plan-row" hidden><a class="btn ghost" id="pay-plan" href="#" target="_blank" rel="noopener">Start the lead manager</a></div>
+<p class="muted small">Each button opens secure checkout in a new tab. Full refund on the website any time before it goes live. See the <a href="/terms#website-package">Terms</a>.</p>
+</div>
+
 <div class="stack" style="gap:14px">
 <h2 style="font-size:24px">What happens next</h2>
-<div class="step"><div class="num">1</div><p>Pay through the checkout link we send you.</p></div>
+<div class="step"><div class="num">1</div><p id="step-pay">Pay through the checkout link we send you.</p></div>
 <div class="step"><div class="num">2</div><p>Upload your logo and photos using the link that follows.</p></div>
 <div class="step"><div class="num">3</div><p>Your site is ready to review within 7 days of your photos.</p></div>
 </div>
@@ -56,8 +68,44 @@
 <script>
 (function () {
   var lead = WL.load();
-  if (!lead.email) return;
   var video = lead.owner_video === 'yes';
+
+  // Pay buttons: one per item, only when its checkout link is set in site-config.js.
+  var links = (window.WL_CONFIG || {}).payLinks || {};
+  var planNum = parseInt(lead.lead_manager_plan || '0', 10);
+  var planLabels = { 150: 'Start the lead manager, $150 a month', 200: 'Start the lead manager with AI assistant, $200 a month', 300: 'Start the lead manager with AI and phone line, $300 a month' };
+  function ok(u) { return /^https:\/\//.test(u || ''); }
+  function wire(id, url) {
+    var el = document.getElementById(id);
+    el.href = url;
+    el.addEventListener('click', function () { WL.track('InitiateCheckout'); });
+  }
+  // One-checkout link for this exact combination, if it has been set up.
+  var combos = (window.WL_CONFIG || {}).comboLinks || {};
+  var comboKey = 'site' + (video ? 'Video' : '') + (planLabels[planNum] ? planNum : '');
+  if (ok(combos[comboKey])) {
+    wire('pay-combo', combos[comboKey]);
+    document.getElementById('combobox').hidden = false;
+    document.getElementById('intro').textContent = 'One step left: check out below and your 7 days start as soon as we have your photos.';
+    document.getElementById('step-pay').textContent = 'Pay with the button above.';
+  } else if (ok(links.site)) {
+    wire('pay-site', links.site);
+    document.getElementById('paybox').hidden = false;
+    document.getElementById('intro').textContent = 'One step left: pay below and your 7 days start as soon as we have your photos.';
+    document.getElementById('step-pay').textContent = 'Pay with the button above.';
+    if (video && ok(links.video)) {
+      wire('pay-video', links.video);
+      document.getElementById('pay-video-row').hidden = false;
+    }
+    var planUrl = links['plan' + planNum];
+    if (planLabels[planNum] && ok(planUrl)) {
+      wire('pay-plan', planUrl);
+      document.getElementById('pay-plan').textContent = planLabels[planNum];
+      document.getElementById('pay-plan-row').hidden = false;
+    }
+  }
+
+  if (!lead.email) return;
   var plan = parseInt(lead.lead_manager_plan || '0', 10);
   var names = { 150: 'Lead manager', 200: 'Lead manager with AI assistant', 300: 'Lead manager with AI and phone line' };
   document.getElementById('summary').hidden = false;
@@ -66,7 +114,7 @@
   if (names[plan]) {
     document.getElementById('row-plan').hidden = false;
     document.getElementById('plan-name').textContent = names[plan];
-    document.getElementById('plan-price').textContent = '$' + plan + ' a month';
+    document.getElementById('plan-price').textContent = '$' + plan + ' a month, first charge in 14 days';
   }
   WL.track('CompleteRegistration');
 })();
