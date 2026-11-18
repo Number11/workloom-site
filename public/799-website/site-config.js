@@ -34,7 +34,7 @@ window.WL_CONFIG = {
     site200: "",        // Website + Lead Manager + AI Assistant ($200/mo)
     site300: "",        // Website + Lead Manager + AI Assistant + Phone ($300/mo)
     siteVideo150: "",   // Website + Owner Video + Lead Manager ($150/mo)
-    siteVideo200: "",   // Website + Owner Video + Lead Manager + AI Assistant ($200/mo)
+    siteVideo200: "https://link.fastpaydirect.com/payment-link/6afe28b421a48a3872d27588",   // Website + Owner Video + Lead Manager + AI Assistant ($200/mo)
     siteVideo300: ""    // Website + Owner Video + Lead Manager + AI Assistant + Phone ($300/mo)
   },
 
