@@ -305,6 +305,13 @@
     });
   });
 
+  // Coming back with the browser's Back button restores the form with its
+  // buttons still switched off. Switch them back on so answers can be changed.
+  window.addEventListener('pageshow', function () {
+    nextBtn.disabled = false;
+    submitBtn.disabled = false;
+  });
+
   document.getElementById('back').addEventListener('click', function () {
     step2.hidden = true;
     step1.hidden = false;

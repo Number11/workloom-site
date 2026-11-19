@@ -72,6 +72,13 @@
     });
   }
   for (var i = 0; i < buttons.length; i++) buttons[i].addEventListener('click', choose);
+  // Coming back with the browser's Back button restores this page exactly as
+  // it was left, buttons switched off included. Switch them back on so the
+  // choice can be changed.
+  window.addEventListener('pageshow', function () {
+    for (var i = 0; i < buttons.length; i++) buttons[i].disabled = false;
+    err.hidden = true;
+  });
 })();
 </script>
 </body>
