@@ -91,6 +91,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
 .video-play span{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:var(--gold)}
 .video-play span::after{content:"";position:absolute;left:33px;top:24px;border-style:solid;border-width:18px 0 18px 28px;border-color:transparent transparent transparent var(--navy)}
 
+/* Book-a-call page */
+.booking{background:var(--white);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.booking iframe{display:block;width:100%;height:900px;border:0}
+
 /* Landing page blocks */
 .features{display:grid;gap:28px 40px}
 @media(min-width:640px){.features{grid-template-columns:1fr 1fr}}

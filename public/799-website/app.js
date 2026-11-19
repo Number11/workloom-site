@@ -85,6 +85,15 @@
       else nodes[i].hidden = true;
     }
 
+    // "Book a call" links: shown only when a scheduling link is configured.
+    var bookOk = /^https:\/\//.test(C.bookingUrl || '');
+    var books = document.querySelectorAll('[data-wl-book]');
+    for (var b = 0; b < books.length; b++) {
+      books[b].hidden = !bookOk;
+      var a = books[b].querySelector('a');
+      if (bookOk && a) a.addEventListener('click', function () { track('Contact'); });
+    }
+
     // Videos: show a thumbnail with a play button; load YouTube only on click.
     var V = C.videos || {};
     var slots = document.querySelectorAll('[data-wl-video]');
