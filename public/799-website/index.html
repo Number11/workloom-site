@@ -234,10 +234,22 @@
   var hero = document.querySelector('.hero');
   var start = document.getElementById('start');
   if (!bar || !hero || !start || !('IntersectionObserver' in window)) return;
-  var heroSeen = true, formSeen = false;
-  function update() { bar.hidden = heroSeen || formSeen; }
-  new IntersectionObserver(function (e) { heroSeen = e[0].isIntersecting; update(); }).observe(hero);
-  new IntersectionObserver(function (e) { formSeen = e[0].isIntersecting; update(); }).observe(start);
+  // Hide the pinned bar while the hero, the form or any in-page
+  // "Start my site" button is on screen, so two buttons never show at once.
+  var targets = [hero, start];
+  var links = document.querySelectorAll('main a.btn[href="#start"]');
+  for (var i = 0; i < links.length; i++) targets.push(links[i]);
+  var seen = [];
+  function update() { bar.hidden = seen.length > 0; }
+  var io = new IntersectionObserver(function (entries) {
+    for (var j = 0; j < entries.length; j++) {
+      var at = seen.indexOf(entries[j].target);
+      if (entries[j].isIntersecting) { if (at < 0) seen.push(entries[j].target); }
+      else if (at >= 0) seen.splice(at, 1);
+    }
+    update();
+  });
+  for (var k = 0; k < targets.length; k++) io.observe(targets[k]);
 })();
 </script>
 <script src="/799-website/site-config.js"></script>
