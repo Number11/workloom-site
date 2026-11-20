@@ -29,13 +29,13 @@ window.WL_CONFIG = {
   // buttons above.
   comboLinks: {
     site: "",           // Website only
-    siteVideo: "",      // Website + Owner Video
-    site150: "",        // Website + Lead Manager ($150/mo)
-    site200: "",        // Website + Lead Manager + AI Assistant ($200/mo)
-    site300: "",        // Website + Lead Manager + AI Assistant + Phone ($300/mo)
-    siteVideo150: "",   // Website + Owner Video + Lead Manager ($150/mo)
+    siteVideo: "https://link.fastpaydirect.com/payment-link/6affdf9321a48a3872d27c6b",      // Website + Owner Video
+    site150: "https://link.fastpaydirect.com/payment-link/6affe02e906a8b62055d8254",        // Website + Lead Manager ($150/mo)
+    site200: "https://link.fastpaydirect.com/payment-link/6affe085906a8b62055d8255",        // Website + Lead Manager + AI Assistant ($200/mo)
+    site300: "https://link.fastpaydirect.com/payment-link/6affe0c821a48a3872d27c6e",        // Website + Lead Manager + AI Assistant + Phone ($300/mo)
+    siteVideo150: "https://link.fastpaydirect.com/payment-link/6affe12421a48a3872d27c70",   // Website + Owner Video + Lead Manager ($150/mo)
     siteVideo200: "https://link.fastpaydirect.com/payment-link/6afe28b421a48a3872d27588",   // Website + Owner Video + Lead Manager + AI Assistant ($200/mo)
-    siteVideo300: ""    // Website + Owner Video + Lead Manager + AI Assistant + Phone ($300/mo)
+    siteVideo300: "https://link.fastpaydirect.com/payment-link/6affe174906a8b62055d8258"    // Website + Owner Video + Lead Manager + AI Assistant + Phone ($300/mo)
   },
 
   // BOOK A CALL. Paste your scheduling link here (the full link, starting
