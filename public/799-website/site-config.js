@@ -41,7 +41,7 @@ window.WL_CONFIG = {
   // BOOK A CALL. Paste your scheduling link here (the full link, starting
   // with https://), for example a GoHighLevel calendar's "Permanent Link".
   // Leave "" and every "Book a call" link on the pages stays hidden.
-  bookingUrl: "https://api.leadconnectorhq.com/widget/booking/Biz3bhhfyJqBhToeuYmn",
+  bookingUrl: "https://api.leadconnectorhq.com/widget/booking/88ZGLqJefPNHCaXmhOR5",
 
   // Where a paid customer uploads their logo and photos (a form or shared
   // folder link). Leave "" and the paid page says the link will be emailed.
